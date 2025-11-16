@@ -29,7 +29,8 @@ public static class CrazyDavePicksPatch
 
     private static void AllowCrazyDaveSeedDeselection(GameplayActivity app)
     {
-        if (app.IsFirstTimeAdventureMode() ||
+        if (!app.IsAdventureMode() ||
+            app.IsFirstTimeAdventureMode() ||
             app.IsCloudyDayMode() ||
             app.IsRipAdventureMode() ||
             app.IsVersusMode() ||
