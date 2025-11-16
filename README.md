@@ -4,7 +4,7 @@ Allows you to freely deselect the seeds Crazy Dave auto-picks in Plants vs. Zomb
 
 ## 📦 Download
 
-- [GameBanana](...)
+- [GameBanana](https://gamebanana.com/mods/634029)
 
 ## 🧩 Requirements
 
