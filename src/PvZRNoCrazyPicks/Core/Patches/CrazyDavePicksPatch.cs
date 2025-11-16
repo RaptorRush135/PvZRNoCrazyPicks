@@ -66,19 +66,33 @@ public static class CrazyDavePicksPatch
         SeedChooserScreen seedChooser,
         IReadOnlyCollection<ChosenSeed> davePicks)
     {
-        foreach (var seed in davePicks.Reverse())
+        TapSoundMutePatch.MuteTapSound = true;
+
+        try
         {
-            seed.mCrazyDavePicked = false;
-            seedChooser.ClickedSeedInBank(seed, FirstPlayerIndex);
+            yield return Routine();
+        }
+        finally
+        {
+            TapSoundMutePatch.MuteTapSound = false;
         }
 
-        seedChooser.LandAllFlyingSeeds();
-
-        yield return null;
-
-        foreach (var seed in davePicks)
+        Coroutine Routine()
         {
-            seedChooser.ClickedSeedInChooser(seed, FirstPlayerIndex);
+            foreach (var seed in davePicks.Reverse())
+            {
+                seed.mCrazyDavePicked = false;
+                seedChooser.ClickedSeedInBank(seed, FirstPlayerIndex);
+            }
+
+            seedChooser.LandAllFlyingSeeds();
+
+            yield return null;
+
+            foreach (var seed in davePicks)
+            {
+                seedChooser.ClickedSeedInChooser(seed, FirstPlayerIndex);
+            }
         }
     }
 }
