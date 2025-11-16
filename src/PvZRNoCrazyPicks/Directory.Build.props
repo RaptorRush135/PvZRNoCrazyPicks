@@ -1,9 +1,9 @@
 <Project>
 
   <PropertyGroup>
-    <ModVersion>0.0.1</ModVersion>
+    <ModVersion>1.0.0</ModVersion>
     <ModAuthor>RaptorRush</ModAuthor>
-    <ModDownloadLink>TODO</ModDownloadLink>
+    <ModDownloadLink>https://github.com/RaptorRush135/PvZRNoCrazyPicks</ModDownloadLink>
   </PropertyGroup>
 
   <PropertyGroup>
