@@ -13,15 +13,16 @@ using PvZRNoCrazyPicks.Extensions;
 
 using Coroutine = System.Collections.IEnumerator;
 
-[HarmonyPatch(typeof(GameplayActivity), nameof(GameplayActivity.NewGame))]
+[HarmonyPatch]
 public static class CrazyDavePicksPatch
 {
-    private const int CrazyDavePickCount = 3;
-
     private const int FirstPlayerIndex = 0;
 
+    private const int CrazyDavePickCount = 3;
+
     [HarmonyPostfix]
-    private static void Postfix(GameplayActivity __instance)
+    [HarmonyPatch(typeof(GameplayActivity), nameof(GameplayActivity.NewGame))]
+    private static void GameplayActivity_NewGame_Postfix(GameplayActivity __instance)
     {
         AllowCrazyDaveSeedDeselection(__instance);
     }
