@@ -18,8 +18,6 @@ public static class CrazyDavePicksPatch
 {
     private const int FirstPlayerIndex = 0;
 
-    private const int CrazyDavePickCount = 3;
-
     [HarmonyPostfix]
     [HarmonyPatch(typeof(GameplayActivity), nameof(GameplayActivity.NewGame))]
     private static void GameplayActivity_NewGame_Postfix(GameplayActivity __instance)
@@ -35,17 +33,13 @@ public static class CrazyDavePicksPatch
             app.IsRipAdventureMode() ||
             app.IsVersusMode() ||
             app.Board.HasConveyorBeltSeedBank() ||
-            app.IsWhackAZombieLevel())
+            app.IsWhackAZombieLevel() ||
+            app.Board.IsStateFromDeserialization)
         {
             return;
         }
 
         var seedChooser = app.SeedChooserScreen;
-
-        if (seedChooser.m_seedBankInfos[FirstPlayerIndex].mSeedsInBank != CrazyDavePickCount)
-        {
-            return;
-        }
 
         IReadOnlyCollection<ChosenSeed> davePicks = [
             .. seedChooser.mChosenSeeds.AsEnumerable()
